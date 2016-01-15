@@ -4,7 +4,13 @@ function profile {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   PATH="$shome/bin:$shome/exec:$PATH"
 
-  export BASEBOX_CACHE="$shome"
+  if [[ -d "/vagrant" ]]; then
+    BASEBOX_CACHE="/vagrant"
+  else
+    BASEBOX_CACHE="$shome"
+  fi
+
+  export BASEBOX_CACHE
 }
 
 profile
