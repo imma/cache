@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  pkg ensure www/squid www/squid3
+}
+
+bootstrap
