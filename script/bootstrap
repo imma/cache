@@ -4,7 +4,11 @@ function bootstrap {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  #pkg ensure www/squid www/squid3
+  case "$(uname -s)" in
+    Darwin)
+      pkg ensure www/squid www/squid3
+      ;;
+  esac
 }
 
 bootstrap
