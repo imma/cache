@@ -5,7 +5,10 @@ function bootstrap {
   source "$shome/script/profile"
 
   case "$(uname -s)" in
-    Darwin)
+    Linux)
+      env CFLAGS=-O2 pkg ensure www/squid www/squid3
+      ;;
+    *)
       pkg ensure www/squid www/squid3
       ;;
   esac
