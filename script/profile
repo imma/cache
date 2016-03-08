@@ -5,6 +5,13 @@ function profile {
   PATH="$shome/bin:$shome/exec:$PATH"
 
   export BASEBOX_CACHE="/vagrant"
+
+  if [[ -n "${ssh_proxy:-}" ]]; then
+    export GIT_SSH="$(which cache-git 2>/dev/null)"
+    if [[ ! -x "$GIT_SSH" ]]; then
+      unset GIT_SSH
+    fi
+  fi
 }
 
 profile
