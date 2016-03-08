@@ -6,7 +6,7 @@ function profile {
 
   export BASEBOX_CACHE="/vagrant"
 
-  if [[ -n "${ssh_proxy:-}" ]]; then
+  if [[ -n "${ssh_gateway:-}" ]]; then
     export GIT_SSH="$(which cache-git 2>/dev/null)"
     if [[ ! -x "$GIT_SSH" ]]; then
       unset GIT_SSH
