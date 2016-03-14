@@ -17,7 +17,9 @@ function bootstrap {
       ;;
   esac
 
-  mkdir -p "$PKG_HOME/install/var/squid/cache/squid"
+  if [[ -d "$PKG_HOME" ]]; then
+    mkdir -p "$PKG_HOME/install/var/squid/cache/squid"
+  fi
 }
 
 bootstrap
