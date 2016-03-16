@@ -2,7 +2,7 @@
 
 function profile {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
-  PATH="$shome/bin:$PATH"
+  PATH="$shome/bin:$shome/exec:$PATH"
 
   export BASEBOX_CACHE="/vagrant"
 
