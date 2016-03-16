@@ -15,8 +15,11 @@ function main {
 
   case "$cmd_git" in
     git-upload-pack)
-      local nm_user="$(echo "$2" | cut -d/ -f1)"
-      local nm_repo="$(echo "$2" | cut -d/ -f2)"
+      local nm_user_repo="${2#/}"
+      shift; shift
+      set -- "$cmd_git" "$nm_user_repo" "$@"
+      local nm_user="$(echo "$nm_user_repo" | cut -d/ -f1)"
+      local nm_repo="$(echo "$nm_user_repo" | cut -d/ -f2)"
 
       local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
       if [[ -z "${GIT_CACHE}" ]]; then
