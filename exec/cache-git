@@ -32,12 +32,8 @@ function main {
         popd >/dev/null
       fi
 
-      local hst_cache="localhost"
-      if [[ -n "${http_proxy:-}" ]]; then
-        hst_cache="${http_proxy##*/}"
-        hst_cache="${hst_cache%%:*}"
-      fi
-      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l defn "$hst_cache" "cd ${pth_cache} && $*" 1>&9 # TODO better way to find user@cache
+      local hst_cache="${ssh_gateway:-localhost}"
+      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-defn}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9 # TODO remove defn@ when tested
       ;;
 
     *)
