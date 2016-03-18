@@ -36,7 +36,7 @@ function main {
       fi
 
       local hst_cache="${ssh_gateway:-localhost}"
-      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-defn}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9 # TODO remove defn@ when tested
+      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-${USER:-${LOGNAME}}}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9
       ;;
 
     *)
