@@ -1,0 +1,2 @@
+all:
+	@script/cibuild
