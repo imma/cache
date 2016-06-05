@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function main {
-  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  local shome="${_cache_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
 
   exec 9>&1 1>&2
   unset GIT_SSH GIT_DIR
