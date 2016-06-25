@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="${_cache_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+
+  if [[ "$#" == 0 ]]; then
+    set +f
+    set -- $CACHE_DIR/cache/git/*/*/*
+    set -f
+  fi
+
+  runmany 10 'echo $1 $(unset GIT_SSH; cd $1; git fetch --all)' "$@"
+}
+
+source sub "$BASH_SOURCE" "$@"
