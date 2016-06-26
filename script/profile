@@ -4,7 +4,7 @@ function profile {
   local shome="${_cache_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
   PATH="$shome/bin:$shome/exec:$PATH"
 
-  export CACHE_VIP='172.28.130.2'
+  export CACHE_VIP='172.28.128.1'
 
   export CACHE_DIR="/vagrant"
   export BASEBOX_CACHE="${CACHE_DIR}"
