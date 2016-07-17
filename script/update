@@ -6,8 +6,8 @@ function home_update {
 
   install -dv -m 0755 "$BASEBOX_CACHE"
 
-  if facts -e '(.virtualization_role == "guest")'; then
-    if ! ifconfig -a | grep "${CACHE_VIP}"; then
+  if ! facts -e '(.virtualization_role == "guest")' >/dev/null; then
+    if ! ifconfig -a | grep "${CACHE_VIP}" >/dev/null; then
       case "$(uname -s)" in
         Darwin)
           sudo ifconfig en0 alias "${CACHE_VIP}/24" up
