@@ -5,6 +5,19 @@ function home_update {
   source "$shome/script/profile"
 
   install -dv -m 0755 "$BASEBOX_CACHE"
+
+  if facts -e '(.virtualization_role == "guest")'; then
+    if ! ifconfig -a | grep "${CACHE_VIP}"; then
+      case "$(uname -s)" in
+        Darwin)
+          sudo ifconfig en0 alias "${CACHE_VIP}/24" up
+          ;;
+        Linux)
+          sudo ip addr add "${CACHE_VIP}" dev lo
+          ;;
+      esac
+    fi
+  fi
 }
 
 home_update "$@"
