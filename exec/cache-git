@@ -19,7 +19,7 @@ function main {
       shift; shift
       set -- "$cmd_git" "$nm_user_repo" "$@"
       local nm_user="$(echo "$nm_user_repo" | cut -d/ -f1)"
-      local nm_repo="$(echo "$nm_user_repo" | cut -d/ -f2)"
+      local nm_repo="$(basename $(echo "$nm_user_repo" | cut -d/ -f2) .git)"
 
       local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
       if [[ ! -d "$pth_cache/." ]]; then
