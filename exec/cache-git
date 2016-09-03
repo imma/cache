@@ -23,7 +23,7 @@ function main {
 
       local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
 
-      if [[ -z "${ssh_gateway:-}" ]]; then
+      if [[ -z "${ssh_gateway_user:-}" ]]; then
         if [[ ! -d "$pth_cache/." ]]; then
           mkdir -p $pth_cache 
         fi
