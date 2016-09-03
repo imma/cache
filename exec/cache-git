@@ -21,21 +21,23 @@ function main {
       local nm_user="$(echo "$nm_user_repo" | cut -d/ -f1)"
       local nm_repo="$(echo "$nm_user_repo" | cut -d/ -f2)"
 
-      local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
-      if [[ ! -d "$pth_cache/." ]]; then
-        mkdir -p $pth_cache 
-      fi
-      if [[ -z "${GIT_CACHE}" ]]; then
-        echo "INFO: updating git cache for ${pth_cache}/$nm_user/$nm_repo" 1>&2
-        if [[ ! -d "${pth_cache}/$nm_user/$nm_repo" ]]; then
-          mkdir -p "${pth_cache}/$nm_user"
-          git clone --bare --mirror \
-            "${ssh_remote}:${nm_user_repo}" "${pth_cache}/$nm_user/$nm_repo"
+      if [[ -z "${ssh_gateway:-}" ]]; then
+        local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
+        if [[ ! -d "$pth_cache/." ]]; then
+          mkdir -p $pth_cache 
         fi
+        if [[ -z "${GIT_CACHE}" ]]; then
+          echo "INFO: updating git cache for ${pth_cache}/$nm_user/$nm_repo" 1>&2
+          if [[ ! -d "${pth_cache}/$nm_user/$nm_repo" ]]; then
+            mkdir -p "${pth_cache}/$nm_user"
+            git clone --bare --mirror \
+              "${ssh_remote}:${nm_user_repo}" "${pth_cache}/$nm_user/$nm_repo"
+          fi
 
-        pushd "${pth_cache}/$nm_user/$nm_repo" >/dev/null
-        git fetch --all
-        popd >/dev/null
+          pushd "${pth_cache}/$nm_user/$nm_repo" >/dev/null
+          git fetch --all
+          popd >/dev/null
+        fi
       fi
 
       local hst_cache="${ssh_gateway:-localhost}"
