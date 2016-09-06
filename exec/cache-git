@@ -34,10 +34,6 @@ function main {
             git clone --bare --mirror \
               "${ssh_remote}:${nm_user_repo}" "${pth_cache}/$nm_user/$nm_repo"
           fi
-
-          pushd "${pth_cache}/$nm_user/$nm_repo" >/dev/null
-          git fetch --all
-          popd >/dev/null
         fi
       fi
 
