@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="${_cache_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+  source "$shome/script/profile"
+
+  (set +f; runmany 10 'cd $1 && git fetch -all' "${CACHE_DIR}"/cache/git/*/*/*)
+}
+
+source sub "$BASH_SOURCE" "$@"
