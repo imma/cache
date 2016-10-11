@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+
+  unset GIT_SSH
+  git push
+
+  cache git pull
+}
+
+source sub "$BASH_SOURCE" "$@"
