@@ -14,7 +14,7 @@ function main {
   local cmd_git="$1"
 
   case "$cmd_git" in
-    git-upload-pack|git-receive-pack)
+    git-upload-pack)
       local nm_user_repo="${2#/}"
       shift; shift
       set -- "$cmd_git" "$nm_user_repo" "$@"
@@ -37,11 +37,7 @@ function main {
       fi
 
       local hst_cache="${ssh_gateway:-localhost}"
-      if /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-${USER:-${LOGNAME}}}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9; then
-        (cd "${pth_cache}/$nm_user/$nm_repo" && git fetch --all)
-      else
-        return $?
-      fi
+      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-${USER:-${LOGNAME}}}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9
       ;;
 
     *)

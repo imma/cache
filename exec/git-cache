@@ -2,4 +2,13 @@
 
 export GIT_SSH="$(type -P cache-git)"
 
-exec git "$@"
+case "${1:-}" in
+  push)
+    env -u GIT_SSH git push
+    exec git pull
+    ;;
+
+  *)
+    exec git "$@"
+    ;;
+esac
