@@ -32,6 +32,8 @@ function main {
           mkdir -p "${pth_cache}/$nm_user"
           git clone --bare --mirror \
             "${ssh_remote}:${nm_user_repo}" "${pth_cache}/$nm_user/$nm_repo"
+        else
+          (cd "${pth_cache}/$nm_user/$nm_repo" && git fetch --all)
         fi
       fi
 
