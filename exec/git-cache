@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export GIT_SSH="$(type -P cache-git)"
+
+exec git "$@"
