@@ -43,6 +43,7 @@ function main {
 
     *)
       exec /usr/bin/ssh "$ssh_remote" "$@" 1>&9
+      (cd "${pth_cache}/$nm_user/$nm_repo" && git fetch --all 2>&1 >/dev/null)
       ;;
   esac
 }
