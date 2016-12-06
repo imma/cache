@@ -14,13 +14,12 @@ function main {
   local cmd_git="$1"
 
   case "$cmd_git" in
-    git-upload-pack)
+    git-upload-pack|git-receive-pack)
       local nm_user_repo="${2#/}"
       shift; shift
       set -- "$cmd_git" "$nm_user_repo" "$@"
       local nm_user="$(echo "$nm_user_repo" | cut -d/ -f1)"
       local nm_repo="$(echo "$nm_user_repo" | cut -d/ -f2)"
-
       local pth_cache="${BASEBOX_CACHE:-/vagrant}/cache/git/$hst_remote"
 
       if [[ ! -d "$pth_cache/." ]]; then
@@ -38,14 +37,15 @@ function main {
       fi
 
       local hst_cache="${ssh_gateway:-localhost}"
-      exec /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-${USER:-${LOGNAME}}}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9
+      if /usr/bin/ssh -o StrictHostKeyChecking=no -l "${ssh_gateway_user:-${USER:-${LOGNAME}}}" "$hst_cache" "cd ${pth_cache} && $*" 1>&9; then
+        (cd "${pth_cache}/$nm_user/$nm_repo" && git fetch --all)
+      else
+        return $?
+      fi
       ;;
 
     *)
-      /usr/bin/ssh "$ssh_remote" "$@" 1>&9
-      local save_ec="$?"
-      (cd "${pth_cache}/$nm_user/$nm_repo" && git fetch --all 2>&1 >/dev/null)
-      exit "$?"
+      exec /usr/bin/ssh "$ssh_remote" "$@" 1>&9
       ;;
   esac
 }
