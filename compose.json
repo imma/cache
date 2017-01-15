@@ -1,0 +1,41 @@
+{
+  "version": "2",
+  "services": {
+    "cache": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config",
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}"
+      ],
+      "image": "${BLOCK_REGISTRY}/block:cache",
+      "hostname": "cache"
+    },
+    "squid": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}",
+        "3128:3128"
+      ],
+      "image": "${BLOCK_REGISTRY}/block:squid",
+      "hostname": "squid"
+    },
+    "nexus": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}",
+        "8081:8081",
+        "5000:5000"
+      ],
+      "image": "${BLOCK_REGISTRY}/block:nexus",
+      "hostname": "nexus"
+    }
+  }
+}

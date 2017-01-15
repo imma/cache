@@ -1,2 +1,1 @@
-all:
-	@script/cibuild
+include ../base/Makefile.docker
