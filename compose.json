@@ -36,6 +36,18 @@
       ],
       "image": "${BLOCK_REGISTRY}/block:nexus",
       "hostname": "nexus"
+    },
+    "nginx": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}",
+        "80:8888"
+      ],
+      "image": "${BLOCK_REGISTRY}/block:nginx",
+      "hostname": "nginx"
     }
   }
 }
