@@ -28,6 +28,29 @@
       "image": "${BLOCK_REGISTRY}/block:consul",
       "hostname": "consul"
     },
+    "dnsmasq": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}",
+        "53:53", "53:53/udp",
+      ],
+      "image": "${BLOCK_REGISTRY}/block:dnsmasq",
+      "hostname": "dnsmasq"
+    },
+    "openvpn": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}"
+      ],
+      "image": "${BLOCK_REGISTRY}/block:openvpn",
+      "hostname": "openvpn"
+    },
     "squid": {
       "volumes": [
         "/data:/data",
