@@ -5,6 +5,8 @@ function home_update {
   source "$shome/script/profile"
 
   install -dv -m 0755 "$CACHE_DIR"
+  install -dv -m 0755 "/data/git"
+  install -dv -m 0755 "/data/git/cache"
 
   if ! facts -e '(.virtualization_role == "guest")' >/dev/null; then
     if ! ifconfig -a | grep "${CACHE_VIP}" >/dev/null; then

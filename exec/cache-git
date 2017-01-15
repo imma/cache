@@ -20,7 +20,7 @@ function main {
       set -- "$cmd_git" "$nm_user_repo" "$@"
       local nm_user="$(echo "$nm_user_repo" | cut -d/ -f1)"
       local nm_repo="$(echo "$nm_user_repo" | cut -d/ -f2)"
-      local pth_cache="${CACHE_DIR}/cache/git/$hst_remote"
+      local pth_cache="/data/git/cache/$hst_remote"
 
       if [[ ! -d "$pth_cache/." ]]; then
         mkdir -p $pth_cache 

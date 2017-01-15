@@ -5,7 +5,7 @@ function main {
 
   if [[ "$#" == 0 ]]; then
     set +f
-    set -- $CACHE_DIR/cache/git/*/*/*
+    set -- /data/git/cache/*/*/*
     set -f
   fi
 
