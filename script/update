@@ -4,7 +4,7 @@ function home_update {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  install -dv -m 0755 "$BASEBOX_CACHE"
+  install -dv -m 0755 "$CACHE_DIR"
 
   if ! facts -e '(.virtualization_role == "guest")' >/dev/null; then
     if ! ifconfig -a | grep "${CACHE_VIP}" >/dev/null; then
