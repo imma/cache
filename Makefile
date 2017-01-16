@@ -5,7 +5,7 @@ endif
 REBUILD ?= app
 
 rebuild:
-	cd ../$(REBUILD) && make docker
+	cd ../$(REBUILD) && $(extra) make docker
 
 rebuild-all:
 	cat compose.json | jq -r '.services | keys[]' | grep -v ubuntu-home | runmany '$(make) rebuild $$1'
