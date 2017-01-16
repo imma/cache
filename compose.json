@@ -4,7 +4,7 @@
     "cache": {
       "volumes": [
         "/data:/data",
-        "/config:/config",
+        "/config:/config"
       ],
       "ports": [
         "${BLOCK_SSH_PORT}"
@@ -35,7 +35,7 @@
       ],
       "ports": [
         "${BLOCK_SSH_PORT}",
-        "53:53", "53:53/udp",
+        "53:53", "53:53/udp"
       ],
       "image": "${BLOCK_REGISTRY}/block:dnsmasq",
       "hostname": "dnsmasq"
