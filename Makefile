@@ -8,6 +8,6 @@ rebuild:
 	cd ../$(REBUILD) && make docker
 
 rebuild-all:
-	cat compose.json | jq -r '.services | keys[]' | grep -v ubuntu-home | runmany '$(MAKE) rebuild $$1'
+	cat compose.json | jq -r '.services | keys[]' | grep -v ubuntu-home | runmany '$(make) rebuild $$1'
 
 include ../base/Makefile.docker
