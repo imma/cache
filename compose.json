@@ -49,12 +49,14 @@
         "/config:/config"
       ],
       "ports": [
-        "${BLOCK_SSH_PORT}"
+        "${BLOCK_SSH_PORT}",
+        "1194:1194"
       ],
       "dns": "172.28.128.1",
       "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:openvpn",
-      "hostname": "openvpn"
+      "hostname": "openvpn",
+      "privileged": true
     },
     "squid": {
       "volumes": [
