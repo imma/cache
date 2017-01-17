@@ -9,6 +9,8 @@
       "ports": [
         "${BLOCK_SSH_PORT}"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:cache",
       "hostname": "cache"
     },
@@ -25,6 +27,8 @@
         "8400:8400", 
         "8500:8500"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:consul",
       "hostname": "consul"
     },
@@ -38,6 +42,8 @@
         "53:5353",
         "53:5353/udp"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:dnsmasq",
       "hostname": "dnsmasq"
     },
@@ -49,6 +55,8 @@
       "ports": [
         "${BLOCK_SSH_PORT}"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:openvpn",
       "hostname": "openvpn"
     },
@@ -61,6 +69,8 @@
         "${BLOCK_SSH_PORT}",
         "3128:3128"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:squid",
       "hostname": "squid"
     },
@@ -74,6 +84,8 @@
         "8081:8081",
         "5000:5000"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:nexus",
       "hostname": "nexus"
     },
@@ -86,6 +98,8 @@
         "${BLOCK_SSH_PORT}",
         "80:8888"
       ],
+      "dns": "172.28.128.1",
+      "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:nginx",
       "hostname": "nginx"
     }
