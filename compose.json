@@ -35,7 +35,8 @@
       ],
       "ports": [
         "${BLOCK_SSH_PORT}",
-        "5353:5353", "5353:5353/udp"
+        "5354:5353",
+        "5354:5353/udp"
       ],
       "image": "${BLOCK_REGISTRY}/block:dnsmasq",
       "hostname": "dnsmasq"
