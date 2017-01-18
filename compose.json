@@ -9,6 +9,9 @@
       "ports": [
         "${BLOCK_SSH_PORT}"
       ],
+      "cap_add": [
+        "NET_ADMIN"
+      ],
       "dns": "172.28.128.1",
       "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:cache",
@@ -52,11 +55,14 @@
         "${BLOCK_SSH_PORT}",
         "1194:1194"
       ],
+      "privileged": true,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
       "dns": "172.28.128.1",
       "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:openvpn",
-      "hostname": "openvpn",
-      "privileged": true
+      "hostname": "openvpn"
     },
     "squid": {
       "volumes": [
