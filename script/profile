@@ -4,7 +4,7 @@ function _cache_profile {
   local shome="${_cache_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
   PATH="$shome/bin:$shome/exec:$PATH"
 
-  export CACHE_VIP='172.28.128.1'
+  export CACHE_VIP='172.28.28.1'
   export CACHE_DIR="/data/cache"
 
   if [[ -n "${ssh_gateway:-}" ]]; then
