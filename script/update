@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
 
-function home_update {
+function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  install -dv -m 0755 "$CACHE_DIR"
-  install -dv -m 0755 "/data/git"
-  install -dv -m 0755 "/data/git/cache"
-
-  if ! facts -e '(.virtualization_role == "guest")' >/dev/null; then
-    if ! ifconfig -a | grep "${CACHE_VIP}" >/dev/null; then
-      case "$(uname -s)" in
-        Darwin)
-          sudo ifconfig en0 alias "${CACHE_VIP}/24" up
-          ;;
-        Linux)
-          sudo ip addr add "${CACHE_VIP}" dev lo
-          ;;
-      esac
-    fi
+  if facts -e '(.virtualization_role == "guest")' >/dev/null; then
+    return 0
   fi
+
+  if ifconfig -a | grep "${CACHE_VIP}" >/dev/null; then
+    return 0
+  fi
+
+  case "$(uname -s)" in
+    Darwin) sudo ifconfig en0 alias "${CACHE_VIP}/24" up ;;
+    Linux) sudo ip addr add "${CACHE_VIP}" dev lo ;;
+  esac
 }
 
-home_update "$@"
+main "$@"
