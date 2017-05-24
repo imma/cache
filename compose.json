@@ -23,25 +23,6 @@
       ],
       "dns_search": "node.dc1.consul service.dc1.consul",
       "image": "${BLOCK_REGISTRY}/block:squid"
-    },
-    "nexus": {
-      "volumes": [
-        "/data:/data",
-        "/config:/config"
-      ],
-      "environment": [
-        "SERVICE_5001_NAME=docker",
-        "SERVICE_8081_NAME=cache"
-      ],
-      "expose": [
-        "8081"
-      ],
-      "ports": [
-        "${BLOCK_SSH_PORT}",
-        "5001:5001"
-      ],
-      "dns_search": "node.dc1.consul service.dc1.consul",
-      "image": "${BLOCK_REGISTRY}/block:nexus"
     }
   }
 }
