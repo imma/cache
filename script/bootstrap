@@ -4,7 +4,7 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  runmany 'localhost -m file -- state=directory mode=0755 dest="$1"' "$CACHE_DIR" "/data/git" "/data/git/cache"
+  runmany 'localhost -m file -- state=directory mode=0755 dest="$1"' "$CACHE_DIR" "${DATA}/git" "${DATA}/git/cache"
 }
 
 main "$@"
