@@ -4,8 +4,8 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
 
   local pth_install="$1"; shift
-  local key_install="$(echo "$pth_install" | perl 's{[_-\W]+}{-}g')"
-  local pth_cache_install="${DATA}/cache/install/${ID_INSTALL}-${key_install}"
+  local key_install="$(echo "$pth_install" | perl -pe 's{\s+}{}; s{[_-\W]+}{-}g')"
+  local pth_cache_install="${DATA}/cache/install/${ID_INSTALL}-${key_install}.tgz"
 
   if [[ ! -f "$pth_cache_install" ]]; then
     return 1

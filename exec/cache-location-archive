@@ -4,7 +4,7 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
 
   local pth_install="$1"; shift
-  local key_install="$(echo "$pth_install" | perl 's{[_-\W]+}{-}g')"
+  local key_install="$(echo "$pth_install" | perl -pe 's{\s+}{}g; s{[_-\W]+}{-}g')"
   local pth_cache_install="${DATA}/cache/install/${ID_INSTALL}-${key_install}"
 
   (cd / && tar cfz "$pth_cache_install" "$pth_install")
