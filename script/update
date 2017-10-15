@@ -12,9 +12,9 @@ function main {
     return 0
   fi
 
-  case "$(uname -s)" in
+  case "${DISTRIB_ID}" in
     Darwin) sudo ifconfig en0 alias "${CACHE_VIP}/24" up ;;
-    Linux) sudo ip addr add "${CACHE_VIP}" dev lo ;;
+    Ubuntu|Amazon) sudo ip addr add "${CACHE_VIP}" dev lo ;;
   esac
 }
 
