@@ -14,7 +14,7 @@ function main {
 
   case "${DISTRIB_ID}" in
     Darwin) sudo ifconfig en0 alias "${CACHE_VIP}/24" up ;;
-    Ubuntu|Amazon) sudo ip addr add "${CACHE_VIP}" dev lo ;;
+    *)      sudo ip addr add "${CACHE_VIP}" dev lo ;;
   esac
 }
 
