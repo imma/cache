@@ -7,7 +7,7 @@ function main {
   local key_install="$(echo "$pth_install" | perl -pe 's{\s+}{}g; s{[_-\W]+}{-}g')"
   local pth_cache_install="${DATA}/cache/install/${ID_INSTALL}-${key_install}"
 
-  (cd / && tar cfz "$pth_cache_install" "$pth_install")
+  (cd / && tar cfz "$pth_cache_install.tgz" "$pth_install")
 }
 
 source sub "$BASH_SOURCE" "$@"
