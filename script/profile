@@ -10,10 +10,6 @@ function _cache_profile {
   if [[ -n "${ssh_gateway:-}" ]]; then
     export GIT_SSH="$shome/exec/cache-git"
   fi
-
-  if [[ ! -f "${DATA}/cache/nodist" ]]; then
-    mkdir -p "${DATA}/cache/nodist"
-  fi
 }
 
 _cache_profile
