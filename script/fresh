@@ -4,10 +4,6 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ ! -d "${DATA}/cache/nodist" ]]; then
-    return 1
-  fi
-
   return 0
 }
 
